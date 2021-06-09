@@ -1,0 +1,34 @@
+
+
+.Scroll-y{
+    /* Make this scrollable */
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.Scroll-x {
+    width: 100%;
+    overflow-x: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(52, 224, 124); 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0ddf8e; 
+  }
