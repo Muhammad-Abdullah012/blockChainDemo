@@ -1,32 +1,27 @@
-import React from 'react';
-import Heading from '../heading/heading';
-import BlockChain from '../blockChain/blockChain';
-import {VerticalScrollable} from '../scroll/scroll';
-import './homepage.css';
-
-
+import React from "react";
+import Heading from "../heading/heading";
+import BlockChain from "../blockChain/blockChain";
+import { Card } from "antd";
+import "./homepage.css";
+import Meta from "antd/lib/card/Meta";
 
 class Homepage extends React.Component {
-    render() {
-        return (
-            <div id = "HomePage-div">
-                <header id = "main-header">
-                    <Heading/>
-                </header>
-                <div id = "BlockChain-div">
-                    <VerticalScrollable>
-                        <div className = "block-chain-vertical-scroll">
-                            <BlockChain />
-                        </div>  
-                    </VerticalScrollable>
-                </div>
-                <footer>
-                    Developed by: Muhammad Abdullah
-                </footer>
-            </div>
-        );
-    }
-
+  render() {
+    return (
+      <div id="HomePage-div">
+        <Card
+          title={<Heading />}
+          bordered={false}
+          headStyle={{
+            textAlign: "center",
+          }}
+        >
+          <BlockChain />
+          <Meta title="Developed by: Muhammad Abdullah"></Meta>
+        </Card>
+      </div>
+    );
+  }
 }
 
 export default Homepage;
