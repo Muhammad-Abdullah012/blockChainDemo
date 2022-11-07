@@ -1,7 +1,7 @@
 import React from "react";
 import Heading from "../heading/heading";
 import BlockChain from "../blockChain/blockChain";
-import { Card, Row, Col } from "antd";
+import { Card, Col } from "antd";
 import "./homepage.css";
 import Meta from "antd/lib/card/Meta";
 
