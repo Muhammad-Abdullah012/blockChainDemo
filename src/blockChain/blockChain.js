@@ -83,21 +83,21 @@ class BlockChain extends React.Component {
   mineHash = (index) => {
     this.setState({ isMining: true }, () => {
       for (let i = this.state.blocks[index].nounce; ; i++) {
-        let block = this.state.blocks;
-        let b = {
-          blockNo: block[index].blockNo,
-          timeStamp: block[index].timeStamp,
+        let blocks = this.state.blocks;
+        let h = this.getHash({
+          blockNo: blocks[index].blockNo,
+          timeStamp: blocks[index].timeStamp,
           nounce: i,
-          data: block[index].data,
+          data: blocks[index].data,
           prevHash: this.state.hashes[index],
-        };
-        let h = this.getHash(b);
+        });
         if (this.isValidHash(h)) {
           let hash = this.state.hashes;
-          let b = this.state.blocks;
+          // let b = blocks;
           hash[index + 1] = h;
-          b[index].nounce = i;
-          this.setState({ blocks: b });
+          blocks[index].nounce = i;
+          // b[index].data =
+          this.setState({ blocks });
           this.setState({ hashes: hash });
           this.setState({ isMining: false });
           if (index < this.state.blocks.length - 1)
@@ -132,7 +132,6 @@ class BlockChain extends React.Component {
   //   };
 
   renderCards = () => {
-    //mine button style must be changed , when it's mining!!!
     const Blocks = this.state.blocks.map((b, i) => {
       const bgColor =
         this.state.hashes.length > 1 &&
@@ -146,26 +145,53 @@ class BlockChain extends React.Component {
           className="BlockCard-div"
           style={{
             width: "fit-content",
+            margin: "0 auto",
           }}
         >
-          <table className="table">
-            <tbody className="table-body">
+          <table
+            className="table"
+            style={{
+              width: "100%",
+            }}
+          >
+            <tbody
+              className="table-body"
+              style={{
+                width: "100%",
+              }}
+            >
               <tr className="table-row">
                 <td className="table-text">Block No:</td>
                 <td className="table-input">
-                  <Text>{b.blockNo}</Text>
+                  <Text
+                    style={{
+                      width: "100%",
+                    }}
+                  >
+                    {b.blockNo}
+                  </Text>
                 </td>
               </tr>
               <tr className="table-row">
                 <td>Nounce:</td>
                 <td>
-                  <Text>{b.nounce}</Text>
+                  <Text
+                    style={{
+                      width: "100%",
+                    }}
+                  >
+                    {b.nounce}
+                  </Text>
                 </td>
               </tr>
               <tr className="table-row">
                 <td>Data</td>
                 <td>
                   <Input
+                    style={{
+                      minWidth: "20%",
+                      width: "100%",
+                    }}
                     defaultValue={defaultValue}
                     onPressEnter={(e) => this.changeData(e.target.value, i)}
                   />
@@ -174,7 +200,13 @@ class BlockChain extends React.Component {
               <tr className="table-row">
                 <td>Prev:</td>
                 <td>
-                  <Text>{this.state.hashes[i]}</Text>
+                  <Text
+                    style={{
+                      width: "100%",
+                    }}
+                  >
+                    {this.state.hashes[i]}
+                  </Text>
                 </td>
               </tr>
               <tr className="table-row">
@@ -182,6 +214,7 @@ class BlockChain extends React.Component {
                 <td>
                   <Text
                     style={{
+                      width: "100%",
                       backgroundColor: bgColor,
                     }}
                   >
